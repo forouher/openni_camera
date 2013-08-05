@@ -190,20 +190,6 @@ unsigned OpenNIDriver::updateDeviceList () throw ()
     unsigned short vendor_id;
 
     getDeviceType(device_context_[deviceIdx].device_node.GetCreationInfo (), vendor_id, product_id );
-
-#if _WIN32
-    if (vendor_id == 0x45e)
-    {
-      strcpy ((char*)device_context_[deviceIdx].device_node.GetDescription().strVendor, "Microsoft");
-      strcpy ((char*)device_context_[deviceIdx].device_node.GetDescription().strName, "Xbox NUI Camera");
-    }
-    else
-#endif
-    if (vendor_id == 0x1d27 && device_context_[deviceIdx].image_node.get () == 0)
-    {
-      strcpy ((char*)device_context_[deviceIdx].device_node.GetDescription().strVendor, "ASUS");
-      strcpy ((char*)device_context_[deviceIdx].device_node.GetDescription().strName, "Xtion Pro");
-    }
   }
   return (device_context_.size ());
 }
